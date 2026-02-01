@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StickerLaughs: Buy hilarious, funny stickers online. Aesthetic designs for your phone, laptop, or water bottle. Free shipping on orders over $20!">
+    <meta name="keywords" content="funny stickers, buy stickers online, aesthetic stickers, hilarious decals, sticker shop">
+    <title>StickerLaughs - Buy Funny Stickers Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #E8F5E8, #F3E5F5);
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: #F48FB1;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #EC407A;
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: #81C784;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #4CAF50;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #F48FB1;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #F48FB1;
+        }
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .hero-section {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #FFF3E0, #F3E5F5);
+            border-radius: 0 0 50px 50px;
+        }
+        .hero-headline {
+            font-size: 3rem;
+            color: #F48FB1;
+            margin-bottom: 20px;
+        }
+        .hero-subheading {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .about-section {
+            padding: 80px 0;
+            background: #E8F5E8;
+            text-align: center;
+        }
+        .shop-section {
+            padding: 80px 0;
+            background: #FFF3E0;
+        }
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .sticker-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .sticker-card:hover {
+            transform: translateY(-5px);
+        }
+        .sticker-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .sticker-card h3 {
+            color: #F48FB1;
+            margin-bottom: 10px;
+        }
+        .sticker-card p {
+            margin-bottom: 15px;
+        }
+        .contact-section {
+            padding: 80px 0;
+            background: #F3E5F5;
+        }
+        .contact-container {
+            display: flex;
+            gap: 40px;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background: white;
+        }
+        .footer {
+            background: #81C784;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        .close {
+            color: #F48FB1;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        @media (max-width: 768px) {
+            .hero-headline {
+                font-size: 2rem;
+            }
+            .contact-container {
+                flex-direction: column;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+            .shop-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">StickerLaughs 😂</div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <i class="fas fa-shopping-cart cart-icon" onclick="openCart()"></i>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h1 class="hero-headline">Get Your Laugh On with Funny Stickers!</h1>
+                <p class="hero-subheading">Hilarious, aesthetic stickers for your devices, water bottles, and more. Free shipping on $20+ orders! 😄</p>
+                <a href="#shop" class="btn btn-primary">Shop Now</a>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About StickerLaughs</h2>
+                <p>We're all about spreading joy through stickers! Our funny, hand-designed decals are perfect for brightening your day. From sarcastic cats to dancing avocados, find your vibe and stick it everywhere. Aesthetic, durable, and 100% hilarious.</p>
+            </div>
+        </section>
+
+        <section id="shop" class="shop-section">
+            <div class="container">
+                <h2>Shop Funny Stickers</h2>
+                <div class="shop-grid">
+                    <div class="sticker-card">
+                        <img src="https://via.placeholder.com/250x150/FFF3E0/F48FB1?text=Funny+Cat" alt="Funny cat sticker">
+                        <h3>Sarcastic Cat Pack</h3>
+                        <p>$5.99 - 5 hilarious cat stickers</p>
+                        <button class="btn btn-secondary" onclick="addToCart('Sarcastic Cat Pack', 5.99)">Add to Cart</button>
+                    </div>
+                    <div class="sticker-card">
+                        <img src="https://via.placeholder.com/250x150/FFF3E0/F48FB1?text=Dancing+Avocado" alt="Dancing avocado sticker">
+                        <h3>Dancing Avocado Set</h3>
+                        <p>$4.99 - 4 fun avocado stickers</p>
+                        <button class="btn btn-secondary" onclick="addToCart('Dancing Avocado Set', 4.99)">Add to Cart</button>
+                    </div>
+                    <div class="sticker-card">
+                        <img src="https://via.placeholder.com/250x150/FFF3E0/F48FB1?text=Meme+Face" alt="Meme face sticker">
+                        <h3>Meme Face Bundle</h3>
+                        <p>$6.99 - 6 meme-inspired stickers</p>
+                        <button class="btn btn-secondary" onclick="addToCart('Meme Face Bundle', 6.99)">Add to Cart</button>
+                    </div>
+                    <div class="sticker-card">
+                        <img src="https://via.placeholder.com/250x150/FFF3E0/F48FB1?text=Unicorn+Fail" alt="Unicorn fail sticker">
+                        <h3>Unicorn Fail Pack</h3>
+                        <p>$5.49 - 5 magical fail stickers</p>
+                        <button class="btn btn-secondary" onclick="addToCart('Unicorn Fail Pack', 5.49)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Contact Us</h2>
+                        <p>Got sticker ideas? Reach out! 📧 Email: hello@stickerlaughs.com | 📞 Call: (123) 456-7890</p>
+                    </div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <p>&copy; 2023 StickerLaughs. All rights reserved. 😂</p>
+                <div>
+                    <a href="#" style="margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cartItems"></div>
+            <p>Total: $<span id="cartTotal">0.00</span></p>
+            <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            total += price;
+            updateCart();
+            alert(`${name} added to cart! 🎉`);
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                cartItems.innerHTML += `<div class="cart-item"><span>${item.name}</span><span>$${item.price}</span></div>`;
+            });
+            document.getElementById('cartTotal').textContent = total.toFixed(2);
+        }
+
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function checkout() {
+            alert('Thanks for shopping! Your order is on the way. 🚀');
+            cart = [];
+            total = 0;
+            updateCart();
+            closeCart();
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('cartModal')) {
+                closeCart();
+            }
+        }
+    </script>
+</body>
+</html>
